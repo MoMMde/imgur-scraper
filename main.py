@@ -31,7 +31,7 @@ def scrape_pictures(thread):
         output_stream.close()
         
         print(response.status_code)
-        if response.status_code in [400, 302, 301, 300]:
+        if response.status_code in [404, 400, 302, 301, 300]:
             print(f'{thread} -> Invalid: {filename}')
             os.remove(filename)
         else:
