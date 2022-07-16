@@ -46,11 +46,6 @@ def crawl_pictures(thread: int, directory: str, minX: int=0, minY: int=0):
             os.remove(image_dir)
         else:
             size = image_size(image_dir)
-            print(size)
-            print(size[0])
-            print(size[1])
-            print(size[0] < minX)
-            print(size[1] < minY)
             if size[0] < minX or size[1] < minY:
                 print(f'{image_dir} -- Does not match minimum requirements. Deleting!')
                 os.remove(image_dir)
