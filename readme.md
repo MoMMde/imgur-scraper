@@ -10,5 +10,8 @@ python3 main.py --threads=16
 **`--threads`** will determine how many threads will be started.  
 Default value is **8**
 
-`--directory` will determine where the images should be stored.  
+**`--directory`** will determine where the images should be stored.  
 Default value is **./output/**
+
+**`--minsize`** will determine the minimum size the Image should have
+Default value is **100x100**
