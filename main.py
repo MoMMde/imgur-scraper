@@ -10,7 +10,7 @@ BASE_URL = 'https://i.imgur.com/'
 parser = ArgumentParser(description='Lets see what we can find...')
 parser.add_argument('--threads', '-T', type=int, default=8, help='How many Threads should be started')
 parser.add_argument('--directory', '-D', type=str, default='./output', help='Where all the Images should be stored')
-parser.add_argument('--minsize', '-M', type=str, default=None, help='Minimum size the Image can be')
+parser.add_argument('--minsize', '-M', type=str, default="100x100", help='Minimum size the Image can be')
 
 args = parser.parse_args()
 
