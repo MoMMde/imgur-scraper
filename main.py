@@ -12,8 +12,6 @@ parser.add_argument('-threads', '-T', type=int, default=8, help='How many Thread
 
 args = parser.parse_args()
 
-INVALID = [0, 503, 5082, 4939, 4940, 4941, 12003, 5556]
-
 def create_url(length: int) -> str:
     url = BASE_URL + ''.join(choice(string.ascii_letters + string.digits) for _ in range(3))
     url += ''.join(choice(string.ascii_lowercase + string.digits) for _ in range(3))
@@ -32,7 +30,6 @@ def scrape_pictures(thread):
             output_stream.write(chunk)
         output_stream.close()
         
-        file_size = os.path.getsize(filename)
         print(response.status_code)
         if response.status_code in [400, 302, 301, 300]:
             print(f'{thread} -> Invalid: {filename}')
