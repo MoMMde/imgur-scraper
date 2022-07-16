@@ -18,7 +18,7 @@ if not os.path.exists(args.directory):
     os.makedirs(args.directory)
     print(f'Made directory: {args.directory}')
 
-def create_url(length: int) -> str:
+def create_url() -> str:
     url = BASE_URL + ''.join(choice(string.ascii_letters + string.digits) for _ in range(3))
     url += ''.join(choice(string.ascii_lowercase + string.digits) for _ in range(3))
     return url
@@ -30,7 +30,7 @@ def image_size(path: str) -> tuple:
 def crawl_pictures(thread: int, directory: str, minX: int=0, minY: int=0):
     print(f'Initial thread execute: {thread}')
     while 1:
-        url = create_url(randint(5, 6)) + '.jpg'
+        url = create_url() + '.jpg'
         filename = url.rsplit('/', 1)[-1]
 
         response = requests.get(url, allow_redirects=False)
