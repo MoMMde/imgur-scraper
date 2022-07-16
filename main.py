@@ -8,7 +8,7 @@ from random import randint, choice
 BASE_URL = 'https://i.imgur.com/'
 
 parser = ArgumentParser(description='Lets see what we can find...')
-parser.add_argument('-threads', '-T', type=int, default=8, help='How many Threads should be started')
+parser.add_argument('--threads', '-T', type=int, default=8, help='How many Threads should be started')
 
 args = parser.parse_args()
 
@@ -22,7 +22,7 @@ def scrape_pictures(thread):
     while 1:
         url = create_url(randint(5, 6)) + '.jpg'
         filename = url.rsplit('/', 1)[-1]
-        
+
         response = requests.get(url, allow_redirects=False)
 
         output_stream = open(filename, 'wb')
