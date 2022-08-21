@@ -11,15 +11,23 @@ parser = ArgumentParser(description='Lets see what we can find...')
 parser.add_argument('--threads', '-T', type=int, default=8, help='How many Threads should be started')
 parser.add_argument('--directory', '-D', type=str, default='./output', help='Where all the Images should be stored')
 parser.add_argument('--minsize', '-M', type=str, default="100x100", help='Minimum size the Image can be | Enter by scaleX`x`scaleY as string. Example: 100x100')
+parser.add_argument('--id-length', '-L', type=str, default="6-7", help="Range or single value on how long the image id should be")
+
 
 args = parser.parse_args()
+print(f'[ D ] Arguments: {args}')
 
 if not os.path.exists(args.directory):
     os.makedirs(args.directory)
     print(f'[ I ] Created output directory: ''{args.directory}''')
 
 def create_url() -> str:
-    url = BASE_URL + ''.join(choice(string.ascii_letters + string.digits) for _ in range(6))
+    if '-' in args.id_length:
+        from_range, to_range = args.id_length.split('-')
+        final_length = randint(int(from_range), int(to_range))
+    else:
+        final_length = int(args.id_length)
+    url = BASE_URL + ''.join(choice(string.ascii_letters + string.digits) for _ in range(final_length))
     #url += ''.join(choice(string.ascii_lowercase + string.digits) for _ in range(3))
     return url
 
