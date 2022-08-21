@@ -15,3 +15,10 @@ Default value is **./output/**
 
 **`--minsize`** will determine the minimum size the Image should have
 Default value is **100x100**
+
+**`--id-length`** will determine length the Image ID should have
+Default value is **6-7**.
+You can either put a single number or a range. eg. `6-7`
+
+**`--disallow-ghost`** will determine if unindexed images (imgur tells on some images that they are not in their db and no upload data eg. can be be found)
+should be auto. deleted. Default is **False**
