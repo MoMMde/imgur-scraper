@@ -1,6 +1,10 @@
 ## Imgur Crawler
 Crawl imgur.com images and find secrets that aren't that secret
 
+### Warning
+:warning: There is more Porn than you can imagine  
+**Also, it may be aggainst the TOS of Imgur Inc., use at own risk!**
+
 ### Sample Command
 ```
 python3 main.py --threads=16
