@@ -46,15 +46,18 @@ def crawl_pictures(thread: int, directory: str, minX: int=0, minY: int=0, disall
 
         response = requests.get(url, allow_redirects=False)
 
-        image_dir = f'{directory}/{filename}'
-        output_stream = open(image_dir, 'wb')
-        for chunk in response.iter_content(1024):
-            output_stream.write(chunk)
-        output_stream.close()
+        if len(response.content) < 100:
+            print(f'[ X ] No content: {iid}')
+            continue
+        print(response.status_code)
         if response.status_code in [404, 400, 302, 301, 300]:
             print(f'[ X ] Invalid code: {filename}')
-            os.remove(image_dir)
         else:
+            image_dir = f'{directory}/{filename}'
+            output_stream = open(image_dir, 'wb')
+            for chunk in response.iter_content(1024):
+                output_stream.write(chunk)
+            output_stream.close()
             image = Image.open(image_dir)
             size = image.size
             if size[0] < minX or size[1] < minY:
@@ -62,13 +65,9 @@ def crawl_pictures(thread: int, directory: str, minX: int=0, minY: int=0, disall
                 os.remove(image_dir)
             else:
                 print(f'[ I ] {filename} was found by thread {thread}')
-                if not is_ghost_image(iid):
-                    print(f'[ I ] {filename} is a normal image')
-                else:
-                    if disallow_ghost == True:
-                        os.remove(image_dir)
-                        print('[ W ] Deleting Ghost image...')
-                    print(f'[ W ] {filename} is a ghost image')
+                if disallow_ghost == True:
+                    if is_ghost_image(iid):
+                        print(f'[ W ] Found ghost image: {iid}')
 
 
 
