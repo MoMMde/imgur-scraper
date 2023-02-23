@@ -1,5 +1,5 @@
-## Imgur Crawler
-Crawl imgur.com images and find secrets that aren't that secret
+## Imgur Scraper
+Scrape imgur.com images and find secrets that aren't that secret
 
 ### Warning
 :warning: There is more Porn than you can imagine  
